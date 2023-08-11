@@ -1,5 +1,5 @@
 // import the pets array from data.js
-const pets = require('../data');
+const pets = require('./data');
 
 
 // init express app
@@ -8,12 +8,12 @@ const app = express();
 const serverless = require('serverless-http');
 const router = express.Router();
 
-const PORT = 8888;
+const PORT = 8080;
 
 // GET - / - returns homepage
 app.get('/', (req, res) => {
     // serve up the public folder as static index.html file
-    res.sendFile(__dirname + '/dist/index.html')
+    res.sendFile(__dirname + '/index.html')
 });
 
 // // hello world route
@@ -56,8 +56,8 @@ app.get('/v1/pets/:name', (req, res) => {
 app.use('/api/', router);
 
 
-// app.listen(PORT, () => {
-//     console.log('Server is listening on port ' + PORT);
-// });
+app.listen(PORT, () => {
+    console.log('Server is listening on port ' + PORT);
+});
 
 module.exports.handler = serverless(app);
